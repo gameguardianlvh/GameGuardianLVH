@@ -86,6 +86,12 @@ local dataAtual = apiDateTime()
 local autenticado = false
 
 local function autenticarChave(chaveDeAcesso, nomeDoComputador, e_mail, scriptEsperado, chatID, dataAtual)
+    if not chaveDeAcesso or chaveDeAcesso == "" then
+        print("Erro: chaveDeAcesso nao fornecida.")
+        Game.talkPrivate("[" .. scriptEsperado .. "] Erro: chaveDeAcesso nao fornecida.", Player.getName())
+        return false, nil
+    end
+	
     local urlFirebase = "https://gameguardianlvh-default-rtdb.firebaseio.com/" .. chaveDeAcesso .. ".json"
     
     local response_body = {}
@@ -167,7 +173,7 @@ local function autenticarChave(chaveDeAcesso, nomeDoComputador, e_mail, scriptEs
 			
             if not falha and not autenticado then
                 print("Autenticado. Data de expiracao: " .. dataExpiracao)
-				Game.talkPrivate("[" .. scriptEsperado .. "] Autenticado. chatID: " .. resposta.chatID .. "Data de expiracao: " .. dataExpiracao, Player.getName())
+				Game.talkPrivate("[" .. scriptEsperado .. "] Autenticado. chatID: " .. resposta.chatID or 0 .. "Data de expiracao: " .. dataExpiracao, Player.getName())
                 autenticado = true
             end
         end
