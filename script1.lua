@@ -8,7 +8,7 @@ local http = require("socket.http")
 local ltn12 = require("ltn12")
 local os = require("os")
 
-local chaveDeAcesso = chave
+local chaveDeAcesso = chave or '123'
 local scriptEsperado = script
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
