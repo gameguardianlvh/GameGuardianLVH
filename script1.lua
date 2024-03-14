@@ -9,7 +9,7 @@ local ltn12 = require("ltn12")
 local os = require("os")
 
 local chaveDeAcesso = chave
-local scriptEsperado = "GameGuardianLVH"
+local scriptEsperado = script
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 --------------------AUTENTICAR----------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -167,7 +167,7 @@ local function autenticarChave(chaveDeAcesso, nomeDoComputador, e_mail, scriptEs
 			
             if not falha and not autenticado then
                 print("Autenticado. Data de expiracao: " .. dataExpiracao)
-				Game.talkPrivate("[" .. scriptEsperado .. "] Autenticado. Data de expiracao: " .. dataExpiracao, Player.getName())
+				Game.talkPrivate("[" .. scriptEsperado .. "] Autenticado. chatID: " .. chatIDRetornado or 0 .. "Data de expiracao: " .. dataExpiracao, Player.getName())
                 autenticado = true
             end
         end
@@ -179,8 +179,7 @@ end
 local function agendarAutenticacao()
     Timer("autenticar", function()
         local autenticado, chatIDRetornado = autenticarChave(chaveDeAcesso, nomeDoComputador, e_mail, scriptEsperado, chatID, dataAtual)
-        print("Autenticado: " .. tostring(autenticado) .. "\tChatID: " .. tostring(chatIDRetornado or 0))
-    end, 60000, true)
+    end, 10000, true)
 end
 
 agendarAutenticacao()
@@ -675,3 +674,4 @@ Timer("monitor", function()
 	end
 	
 end, 50)
+
