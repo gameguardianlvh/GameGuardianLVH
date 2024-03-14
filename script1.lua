@@ -167,7 +167,7 @@ local function autenticarChave(chaveDeAcesso, nomeDoComputador, e_mail, scriptEs
 			
             if not falha and not autenticado then
                 print("Autenticado. Data de expiracao: " .. dataExpiracao)
-				Game.talkPrivate("[" .. scriptEsperado .. "] Autenticado. chatID: " .. chatIDRetornado or 0 .. "Data de expiracao: " .. dataExpiracao, Player.getName())
+				Game.talkPrivate("[" .. scriptEsperado .. "] Autenticado. chatID: " .. resposta.chatID or 0 .. "Data de expiracao: " .. dataExpiracao, Player.getName())
                 autenticado = true
             end
         end
